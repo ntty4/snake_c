@@ -7,9 +7,12 @@
 #include "../header/output_screen.h"
 
 void darrAppend(darr* frame, char *str, int size) {
-    int new_size = frame->size + size;
+    if(frame->capacity == 0) frame-> capacity = 128;
 
-    char *new_arr = realloc(frame->arr, (new_size + 1) * sizeof(char));
+    int new_size = frame->size + size;
+    while (new_size >= frame->capacity - 1) frame->capacity *= 2;
+
+    char *new_arr = realloc(frame->arr, frame->capacity * sizeof(char));
     memcpy(&new_arr[frame->size], str, size);
     new_arr[new_size] = '\0';
 
@@ -36,7 +39,7 @@ void writeScrin(struct game *game) {
 
     for(int i = 0; i <= game->len_snake; i++) {
 
-        if (i == 1) {
+        if (i == 0) {
             size = snprintf(buff, 32, "\x1b[%d;%dH%c",
                             game->buff_snake[0].y, game->buff_snake[0].x, game->head);
             darrAppend(&frame, buff, size);

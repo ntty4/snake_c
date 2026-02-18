@@ -11,15 +11,15 @@ void initGame() {
     cleanScreen();
     getTerminalSize(&game.size_screen.x, &game.size_screen.y);
 
-    game.buff_snake[0].x = game.buff_snake[1].x = game.size_screen.x / 2;
-    game.buff_snake[0].y = game.buff_snake[1].y = game.size_screen.y / 2;
+    game.buff_snake[0].x = game.size_screen.x / 2;
+    game.buff_snake[0].y = game.size_screen.y / 2;
 
     game.fruit.x = rand() & game.size_screen.x;
     game.fruit.y = rand() & game.size_screen.y;
     game.head = '@';
     game.body= '#';
 
-    game.len_snake = 2;
+    game.len_snake = 1;
     game.in_game = false;
     write(STDOUT_FILENO, "\x1b[?25l", 6);
 

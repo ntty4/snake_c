@@ -54,6 +54,13 @@ void parseInput(struct game *game) {
 
 
 void updateMove(struct game *game) {
+
+    if (game->len_snake >= 1 && game->in_game) {
+        for (int i = game->len_snake; i > 0; i--) {
+            game->buff_snake[i] = game->buff_snake[i-1];
+        }
+    }
+
     switch (game->curr_move) {
         case 'U': if (game->buff_snake[0].y > 0 )                       game->buff_snake[0].y--; break;
         case 'D': if (game->buff_snake[0].y <= game->size_screen.y)     game->buff_snake[0].y++; break;

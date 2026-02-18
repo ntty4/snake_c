@@ -33,12 +33,6 @@ void gameLogic(struct game *game) {
         game->len_snake += 1;
     }
 
-    if (game->len_snake >= 1 && game->in_game) {
-        for (int i = game->len_snake; i > 0; i--) {
-            game->buff_snake[i] = game->buff_snake[i-1];
-        }
-    }
-
     if (game->buff_snake[0].x == 0 || game->buff_snake[0].y == 0 ||
         game->buff_snake[0].x > game->size_screen.x || game->buff_snake[0].y > game->size_screen.y) {
             exitGame();
