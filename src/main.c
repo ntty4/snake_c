@@ -28,8 +28,6 @@ void initGame() {
 int main() {
     initGame();
     terminalRaw();
-    char buff[64];
-    int len;
 
     while(1) {
         parseInput(&game);
